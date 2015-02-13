@@ -1,0 +1,68 @@
+package assignment10.junit;
+
+/*The pawn may move forward to the unoccupied square immediately in front of it 
+ * on the same file; or on its first move it may advance two squares along the 
+ * same file provided both squares are unoccupied; or it may move to a square 
+ * occupied by an opponent's piece which is diagonally in front of it on an adjacent 
+ * file, capturing that piece.
+ */
+public class PiecePawn extends Piece {
+	public int can_move(int x, int y, boolean turn)
+	{
+		if(turn!=this.color)
+			return 0;
+		if(x == this.x && y == this.y) //not moving
+			return 0;
+		if(this.color==false)//white piece
+		{
+			if((this.y-y==1 || this.y-y==2) && x==this.x) 
+				//move front 1 or 2
+			{
+				return 1;
+			}
+		}
+		else
+		{
+			if((y-this.y==1 || y-this.y==2) && x==this.x) 
+				//move front 1 or 2
+			{
+				return 1;
+			}
+		}
+		if(Math.abs(x-this.x)==1)
+		{
+			if(this.color==false)//white piece
+			{	if(this.y-y==1)//capture diagonal
+					return 2;
+			}
+			else
+			{
+				if(y-this.y==1)//capture diagonal
+					return 2;
+			}
+		}
+		return 0;
+	}
+	
+	public boolean leap_over(int x, int y, Piece p)
+	//return true if there's leap_over
+	{
+		int p_x = p.position()[0];
+		int p_y = p.position()[1];
+		//if(p_x==this.x && p_y==this.y)//occupied
+		//return true;
+		if((x==this.x) && (this.y-y==2) && (this.y-p_y==1))
+			return true;
+		return false;
+	}
+	
+	public int type()
+	{
+		return 5;
+	}
+	
+	public void print()
+	{
+		System.out.println("I am "+this.color+" Pawn at "+this.position());	
+	}
+}
