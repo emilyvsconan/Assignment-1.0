@@ -1,0 +1,87 @@
+package assignment10.junit;
+
+	import java.awt.*;
+	import java.awt.event.*; 
+	import javax.swing.*;
+	 
+	 
+public class Window extends JFrame implements ActionListener{
+	    private JPanel[][] ChessCells = new JPanel[8][8];
+	    private JPanel pnlMain = new JPanel(new GridLayout(8,8));
+	    public Window(){
+	        try {
+	            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	        } catch(Exception e) {
+	            //silently ignore
+	        }
+	        JFrame window = new JFrame("Basic Application Example");
+	        window.setSize(500, 500);
+	        
+	        JPanel myPanel = initializePanel();
+	        //initializeButton(myPanel);
+	        //setUpMenu(window);
+	        window.setContentPane(myPanel);
+	        window.setVisible(true);
+	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        myPanel.setBackground(new Color(255, 240, 190));
+	        
+	        pnlMain.setBounds(15,15,460,460);
+	        pnlMain.setBackground(new Color(250, 245, 255));
+	        myPanel.add(pnlMain);
+	        for(int i=0; i<8; i++)
+	        {
+	        	for (int y = 0; y < 8; y++)
+	                  for (int x = 0; x < 8; x++)
+	                  {
+	                        ChessCells[y][x] = new JPanel(new BorderLayout());
+	                        pnlMain.add(ChessCells[y][x]);
+	                        if (y % 2 == 0)
+	                              if (x % 2 != 0)
+	                                   ChessCells[y][x].setBackground(Color.GRAY);
+	                              else
+	                                    ChessCells[y][x].setBackground(Color.WHITE);
+	                        else
+	                              if (x % 2 == 0)
+	                                    ChessCells[y][x].setBackground(Color.LIGHT_GRAY);
+	                              else
+	                                    ChessCells[y][x].setBackground(Color.WHITE);
+	                  }
+	        }
+	        show();
+	    }
+	 
+	    /*private void initializeButton(JPanel myPanel) {
+	        JButton button = new JButton("add pieces");
+	        button.addActionListener(this);
+	        myPanel.add(button, BorderLayout.SOUTH);
+	    }*/
+	 
+	    private JPanel initializePanel() {
+	        JPanel myPanel = new JPanel();
+	        myPanel.setPreferredSize(new Dimension(500,500));
+	        myPanel.setLayout(new BorderLayout());
+	        return myPanel;
+	    }
+	 
+	   /* private void setUpMenu(JFrame window) {
+	        JMenuBar menubar = new JMenuBar();
+	        JMenu file = new JMenu("File");
+	        JMenuItem open = new JMenuItem("Open");
+	        open.addActionListener(this);
+	        file.add(open);
+	        menubar.add(file);
+	        window.setJMenuBar(menubar);
+	    }*/
+	 
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        JOptionPane.showMessageDialog(null,
+	                    "I was clicked by "+e.getActionCommand(),
+	                    "Title here", JOptionPane.INFORMATION_MESSAGE);
+	    }
+	 
+	    public static void main(String[] args) {
+	        new Window();
+	    }
+	
+}

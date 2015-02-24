@@ -1,0 +1,141 @@
+package assignment10.junit;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.util.Properties;
+
+public class View extends JFrame implements ActionListener
+{    
+	Board game = new Board(8);	//use the initialization in Board Class
+	private Container myPanel; //background
+	private JPanel myBoard = new JPanel(new GridLayout(8,8));//chess board
+	private JPanel[][] ChessCells = new JPanel[8][8]; //each square on the board
+	private int[][] Pieces = game.board; //Pieces to arrange
+	
+	private ImageIcon rookBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/rook_dark.png");
+	private ImageIcon rookWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/rook_light.png");
+	private ImageIcon bishopBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/bishop_dark.png");
+	private ImageIcon bishopWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/bishop_light.png");
+	private ImageIcon knightBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/knight_dark.png");
+	private ImageIcon knightWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/knight_light.png");
+	private ImageIcon kingBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/king_dark.png");
+	private ImageIcon kingWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/king_light.png");
+	private ImageIcon queenBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/queen_dark.png");
+	private ImageIcon queenWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/queen_light.png");
+	private ImageIcon pawnBlack = new ImageIcon(System.getProperty("user.dir") + "/pieces/pawn_dark.png");
+	private ImageIcon pawnWhite = new ImageIcon(System.getProperty("user.dir") + "/pieces/pawn_light.png");
+      
+	 public static void main(String[] args)
+     {
+    	 final View app = new View();             
+     }
+	 
+      /*initialize*/
+      public View()
+      {
+    	    /*initialize the window*/
+    	  	myPanel = getContentPane();
+            setBounds(300, 100, 700, 500); //size & position of the window
+            setBackground(new Color(250, 250, 180));
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setTitle("ChessBoard");
+            setResizable(false);
+            myPanel.setLayout(null);  
+            
+            /*initialize the Chess Board*/
+            myBoard.setBounds(10, 10, 460, 460);
+            myBoard.setBackground(new Color(250, 250, 250));
+            myPanel.add(myBoard);
+            
+            /*draw black & white cells and pieces*/
+            this.drawChessBoard();
+            this.drawChessPieces();
+            extracted();
+
+      }
+
+	private void extracted() {
+		show();
+	}
+      
+      //draws black and white cells on the board
+      private void drawChessBoard()
+      {
+            for (int y = 0; y < 8; y++)
+                  for (int x = 0; x < 8; x++)
+                  {
+                       ChessCells[y][x] = new JPanel(new BorderLayout());
+                       myBoard.add(ChessCells[y][x]);
+                        //if (y % 2 == 0)
+                              if (x % 5 == 1)
+                                    ChessCells[y][x].setBackground(Color.BLACK);
+                              if (x % 5 == 0)
+                                    ChessCells[y][x].setBackground(Color.WHITE);
+                              if (x % 5 == 2)
+                                  ChessCells[y][x].setBackground(Color.RED);
+                              if (x % 5 == 3)
+                                  ChessCells[y][x].setBackground(Color.BLUE);
+                              if (x % 5 == 4)
+                                  ChessCells[y][x].setBackground(Color.YELLOW);
+                              
+                        /*else
+                              if (x % 3 == 0)
+                                    ChessCells[y][x].setBackground(Color.BLACK);
+                              else
+                                    ChessCells[y][x].setBackground(Color.WHITE);*/
+                  }
+      }   
+
+      //place chess pieces at their positions
+      private void drawChessPieces()
+      {                      
+            for(int y = 0; y < 8; y++)       
+            	for(int x = 0; x < 8; x++) 
+            {                
+                  this.ChessCells[x][y].add(this.getPieceObject(Pieces[y][x]), BorderLayout.CENTER);
+            }          
+      }
+      
+      //lookup table - match chess pieces with numbers
+      private JLabel getPieceObject(int PieceNum)
+      {
+    	  JLabel lbl;
+    	  if(PieceNum == 9||PieceNum == 16)
+    		  lbl = new JLabel(this.rookBlack);
+    	  else if(PieceNum == 10||PieceNum == 15)
+    		  lbl = new JLabel(this.bishopBlack);
+    	  else if(PieceNum == 11||PieceNum == 14)
+    		  lbl = new JLabel(this.knightBlack);
+    	  else if(PieceNum == 12)
+    		  lbl = new JLabel(this.queenBlack);
+    	  else if(PieceNum == 13)
+    		  lbl = new JLabel(this.kingBlack);
+    	  else if(PieceNum >= 1 && PieceNum <= 8)
+    		  lbl = new JLabel(this.pawnBlack);
+    	  else if(PieceNum == 25 || PieceNum == 32)
+    		  lbl = new JLabel(this.rookWhite);
+    	  else if(PieceNum == 26 || PieceNum == 31)
+    		  lbl =  new JLabel(this.bishopWhite);
+    	  else if(PieceNum == 27 || PieceNum == 30)
+    		  lbl = new JLabel(this.knightWhite);
+    	  else if(PieceNum == 28)
+    		  lbl = new JLabel(this.queenWhite);
+    	  else if(PieceNum == 29)
+              lbl = new JLabel(this.kingWhite);
+    	  else if(PieceNum >= 17 && PieceNum <= 24)
+              lbl = new JLabel(this.pawnWhite);
+    	  else
+    		  lbl = new JLabel();
+    	  return lbl;
+      }
+       
+      public void actionPerformed(ActionEvent e) {
+	        JOptionPane.showMessageDialog(null,
+	                    "I was clicked by "+e.getActionCommand(),
+	                    "Title here", JOptionPane.INFORMATION_MESSAGE);
+	  }
+
+}

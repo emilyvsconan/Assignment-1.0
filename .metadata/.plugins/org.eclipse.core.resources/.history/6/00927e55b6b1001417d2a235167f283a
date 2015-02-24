@@ -1,0 +1,12 @@
+/*The king moves one square in any direction.*/
+public class King extends Piece{
+
+	public boolean can_move(int x, int y)
+	{
+		if(Math.abs(x-this.x)>1) 
+			return false;
+		if(Math.abs(y-this.y)>1)
+			return false;
+		return true;
+	}
+}

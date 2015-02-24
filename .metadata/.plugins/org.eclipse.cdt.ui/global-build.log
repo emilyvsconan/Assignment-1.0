@@ -1,0 +1,221 @@
+
+**** Build of configuration Default for project mp_parse ****
+
+make all 
+clang++ -Iinclude -std=c++1y -stdlib=libc++ -g -O0 -c -Wall -Wextra src/circ_array_test.cpp
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:107:15: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+        if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+           ~~~^~~~~~~
+src/circ_array_test.cpp:24:12: note: in instantiation of member function 'cs225::circ_array<unsigned long long>::operator[]' requested here
+        arr[i] = i + 1;
+           ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:121:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+include/circ_array.tcc:255:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushF_%(2*capacity_)); i++){
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+src/circ_array_test.cpp:25:9: note: in instantiation of member function 'cs225::circ_array<unsigned long long>::push_front' requested here
+    arr.push_front(0);
+        ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:262:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushB_%(2*capacity_)); i++){                       //MIGHT BE SEG FAULT (copy poped)   
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:269:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushF_%(2*capacity_)); i++){                        //MIGHT BE SEG FAULT (copy poped)
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:373:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushB_%(2*capacity_)); i++){                  
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+src/circ_array_test.cpp:26:9: note: in instantiation of member function 'cs225::circ_array<unsigned long long>::push_back' requested here
+    arr.push_back(7);
+        ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:376:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushF_%(2*capacity_)); i++){
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:383:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushB_%(2*capacity_)); i++){                       //MIGHT BE SEG FAULT (copy poped)   
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:390:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushF_%(2*capacity_)); i++){                        //MIGHT BE SEG FAULT (copy poped)
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:153:11: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+    if(idx>=filled_)
+       ~~~^ ~~~~~~~
+src/circ_array_test.cpp:29:20: note: in instantiation of member function 'cs225::circ_array<unsigned long long>::at' requested here
+        assert(arr.at(i) == i);
+                   ^
+/usr/include/assert.h:93:25: note: expanded from macro 'assert'
+    (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __FILE__, __LINE__, #e) : (void)0)
+                        ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:159:19: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+               ~~~^~~~~~~
+include/circ_array.tcc:175:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+include/circ_array.tcc:107:15: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+        if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+           ~~~^~~~~~~
+src/circ_array_test.cpp:60:17: note: in instantiation of member function 'cs225::circ_array<std::__1::unique_ptr<int, std::__1::default_delete<int> > >::operator[]' requested here
+            arr_[i] = std::make_unique<int>(i);  //non const []
+                ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:121:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+include/circ_array.tcc:153:11: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+    if(idx>=filled_)
+       ~~~^ ~~~~~~~
+src/circ_array_test.cpp:62:18: note: in instantiation of member function 'cs225::circ_array<std::__1::unique_ptr<int, std::__1::default_delete<int> > >::at' requested here
+            arr_.at(i) = std::make_unique<int>(i);  //non const at
+                 ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:159:19: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+               ~~~^~~~~~~
+include/circ_array.tcc:175:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+include/circ_array.tcc:373:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushB_%(2*capacity_)); i++){                  
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+src/circ_array_test.cpp:177:10: note: in instantiation of member function 'cs225::circ_array<std::__1::unique_ptr<int, std::__1::default_delete<int> > >::push_back' requested here
+    arr_.push_back(std::make_unique<int>(20)); //move push_back
+         ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:376:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushF_%(2*capacity_)); i++){
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:383:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushB_%(2*capacity_)); i++){                       //MIGHT BE SEG FAULT (copy poped)   
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:390:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushF_%(2*capacity_)); i++){                        //MIGHT BE SEG FAULT (copy poped)
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:255:34: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i = 0; i<(pushF_%(2*capacity_)); i++){
+                                ~^ ~~~~~~~~~~~~~~~~~~~~
+src/circ_array_test.cpp:195:10: note: in instantiation of member function 'cs225::circ_array<std::__1::unique_ptr<int, std::__1::default_delete<int> > >::push_front' requested here
+    arr_.push_front(std::make_unique<int>(10)); //move push_front
+         ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:262:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushB_%(2*capacity_)); i++){                       //MIGHT BE SEG FAULT (copy poped)   
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:269:32: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+            for(uint64_t i=0; i<(pushF_%(2*capacity_)); i++){                        //MIGHT BE SEG FAULT (copy poped)
+                              ~^ ~~~~~~~~~~~~~~~~~~~~
+include/circ_array.tcc:107:15: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+        if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+           ~~~^~~~~~~
+src/circ_array_test.cpp:209:13: note: in instantiation of member function 'cs225::circ_array<std::__1::basic_string<char> >::operator[]' requested here
+        arr1[i] = std::string{"test"};
+            ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:121:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+include/circ_array.tcc:44:26: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+    for(uint64_t i = 0; i<capacity_;i++)
+                        ~^~~~~~~~~~
+src/circ_array_test.cpp:211:29: note: in instantiation of member function 'cs225::circ_array<std::__1::basic_string<char> >::circ_array' requested here
+    circ_array<std::string> arr2{arr1}; //copy_ctr
+                            ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:52:6: warning: field 'filled_' will be initialized after field 'pushF_' [-Wreorder]
+    :filled_{0},pushF_{0},pushB_{0},capacity_{0},arr_{nullptr}
+     ^
+src/circ_array_test.cpp:237:29: note: in instantiation of member function 'cs225::circ_array<std::__1::basic_string<char> >::circ_array' requested here
+    circ_array<std::string> arr2{std::move(arr1)}; //move_ctr
+                            ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:107:15: warning: comparison of integers of different signs: 'uint64_t' (aka 'unsigned long long') and 'int' [-Wsign-compare]
+        if(idx<pushF_) return arr_[cal_index(capacity_-pushF_+idx)];
+           ~~~^~~~~~~
+src/circ_array_test.cpp:260:13: note: in instantiation of member function 'cs225::circ_array<int>::operator[]' requested here
+        arr_[i] = i + 1;
+            ^
+In file included from src/circ_array_test.cpp:14:
+In file included from include/circ_array.h:196:
+include/circ_array.tcc:121:1: warning: control may reach end of non-void function [-Wreturn-type]
+clang++ -std=c++1y -stdlib=libc++ -lc++abi -lpng circ_array_test.o -o circ_array_test
+}
+^
+30 warnings generated.
+ld: library not found for -lpng
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [circ_array_test] Error 1
+
+**** Build Finished ****
+
+**** Build of configuration Default for project mp7 ****
+
+make all 
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs jsmn/jsmn.c -o jsmn.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs libs/libdictionary.c -o libdictionary.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+libs/libdictionary.c:192:2: warning: implicit declaration of function 'tdestroy' is invalid in C99 [-Wimplicit-function-declaration]
+        tdestroy(d->root, destroy_no_element_free);
+        ^
+1 warning generated.
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs libs/libhttp.c -o libhttp.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs queue.c -o queue.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs datastore.c -o datastore.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+datastore.c:223:11: warning: unused variable 'j' [-Wunused-variable]
+    int i,j;
+          ^
+1 warning generated.
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs datastore_control.c -o datastore_control.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+datastore_control.c:29:13: warning: unused variable 'ret' [-Wunused-variable]
+        int ret  = sscanf(line,"%[^,],%[^,],%d",key,value,&rev);
+            ^
+1 warning generated.
+gcc -c -D_GNU_SOURCE -g -W -Wall -I. -Ilibs libjsonparse.c -o libjsonparse.o -lpthread
+clang: warning: -lpthread: 'linker' input unused
+gcc -D_GNU_SOURCE -g -W -Wall -I. -Ilibs jsmn.o libdictionary.o libhttp.o queue.o libjsonparse.o datastore_control.o datastore.o server.c -o server -lpthread
+Undefined symbols for architecture x86_64:
+  "_tdestroy", referenced from:
+      _dictionary_destroy in libdictionary.o
+      _dictionary_destroy_all in libdictionary.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [server] Error 1
+
+**** Build Finished ****
+
+**** Build of configuration Default for project mp7 ****
+
+make all 
+gcc -D_GNU_SOURCE -g -W -Wall -I. -Ilibs jsmn.o libdictionary.o libhttp.o queue.o libjsonparse.o datastore_control.o datastore.o server.c -o server -lpthread
+Undefined symbols for architecture x86_64:
+  "_tdestroy", referenced from:
+      _dictionary_destroy in libdictionary.o
+      _dictionary_destroy_all in libdictionary.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [server] Error 1
+
+**** Build Finished ****

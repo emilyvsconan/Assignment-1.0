@@ -1,0 +1,178 @@
+package assignment10.junit;
+/**
+ * @author Yuchen (Emily) Wu 
+ * CS242 assignment 1.0
+ */
+/**
+ * @author emilyvsconan
+ *
+ */
+public class Board {
+	protected int size;				//size of board
+	protected int[][] board; 		//2D array of board
+	protected int num_alive=32; 	//num of pieces remained
+	protected int step = 0;			//how many steps
+	protected int win = 0;			//not win yet
+	public static Piece[] array_p;	//array of 32 pieces 
+	protected boolean turn=false;	//who's turn
+	
+    /**
+     * move a piece
+     * @param (x, y) destination coordinates
+     * @param p the piece to move 
+     * @return 0 if the game continues, 1 if the game ends.
+     */
+	public int Board_move(int x, int y, Piece p)
+	{
+		/*check if p can move and if there's any leap-over*/
+		if(Board_can_move(x, y, p)==false){	
+			System.out.println("Invalid move_1");
+			return 0;
+		}
+		/*check if a pawn can move*/
+		if(p.can_move(x, y, turn)==2){
+			if(board[x][y]==0){					//nothing to capture
+				System.out.println("Invalid move_2");
+				return 0;
+			}
+			else{
+				board[p.x][p.y] = 0; 			//pick up the piece from the board
+				array_p[board[x][y]].remove();  //set captured piece status to false
+				p.move(x, y); 					//set piece to right position
+				board[x][y] = p.id(); 			//put it to destination on board
+				num_alive--; 					//number of pieces --	
+				step++;
+				turn = !turn;
+				if(win())
+					return 1;
+				return 0;
+			}
+		}
+		/*capture another piece*/
+		if(board[x][y]!=0){
+			board[p.x][p.y] = 0; 				//pick up the piece from the board
+			array_p[board[x][y]].remove(); 		//set piece status to false
+			p.move(x, y); 						//set piece to right position
+			board[x][y] = p.id(); 				//put it to destination
+			num_alive--; 						//number of pieces --	
+			step++;
+			turn = !turn;
+		}
+		/*only move the piece*/
+		else
+		{
+			board[p.x][p.y] = 0;
+			p.move(x, y);
+			board[x][y] = p.id();
+			step++;
+			turn = !turn;
+		}
+		/*if one of the king dies*/
+		if(win())
+			return 1;
+		return 0;
+	}
+	
+	/**
+	 * helper function of Board_move
+	 * @param (x, y) destination coordinates
+     * @param p the piece to move 
+     * @return false if cannot move, 1 if can move.
+	 **/
+	public boolean Board_can_move(int x, int y, Piece p)
+	{
+		if(p.out_of_board(x, y, size))
+			return false;
+		if(p.can_move(x, y, turn)==0)
+			return false;
+		if(p.type()==3) //knight
+			return true;//no leap_over
+		for(int i=0; i<32;i++){
+			if(p.leap_over(x, y, array_p[i])){
+				System.out.println("Over-Leap!");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * whether one of the players win or not
+	 * @return true if one of them wins, false other wise
+	 */
+	public boolean win()
+	{
+		if (array_p[12].status == false)
+		{
+			System.out.println("White Wins!");
+			return true;
+		}
+		if(array_p[28].status == false)
+		{
+			System.out.println("Black Wins!");
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * initialize the board
+	 * @param size of the board
+	 */
+	public Board(int size) {
+		this.size = size;
+		num_alive = 32;
+		board = new int[size][size];
+		int count = 0;
+		for(int i=1; i>=0; i--){
+			for(int j=0; j<size; j++){	
+				board[j][i] = count;
+				count++;
+			}
+		}
+		//black:0-7 pawn, 8,15-rook, 9,14-knight, 10,13-bishop, 11-queen, 12-king
+		for(int i=2; i<size-2;i++){
+			for(int j=0; j<size;j++)
+				board[j][i] = 0;
+		}
+		//All other part is 0
+		for(int i=size-2; i<size; i++){
+			for(int j=0; j<size; j++){
+				board[j][i] = count;
+				count++;
+			}
+		}
+		//black:16-23 pawn, 24,31-rook, 25,30-knight, 26,29-bishop, 27-queen, 28-king
+		
+		//initialize array_p
+		array_p = new Piece[32];
+		//0-8 black pawn
+		for(int i=0; i<8;i++){
+			array_p[i] = new PiecePawn();
+			array_p[i].initial(i, 1, true, true, i);
+		}
+		//black
+		array_p[8] = new PieceRook(); array_p[8].initial(0, 0, true, true, 8);
+		array_p[9] = new PieceKnight();array_p[9].initial(1, 0, true, true, 9);
+		array_p[10] = new PieceBishop();array_p[10].initial(2, 0, true, true, 10);
+	    array_p[11] = new PieceQueen(); array_p[11].initial(3, 0, true, true, 11);
+	    array_p[12] = new PieceKing();array_p[12].initial(4, 0, true, true, 12);
+	    array_p[13] = new PieceBishop();array_p[13].initial(5, 0, true, true, 13);
+	    array_p[14] = new PieceKnight();array_p[14].initial(6, 0, true, true, 14);
+	    array_p[15] = new PieceRook();array_p[15].initial(7, 0, true, true, 15);
+		//0-8 white pawn
+	    for(int i=16; i<24;i++){
+			array_p[i] = new PiecePawn();
+			array_p[i].initial(i-16, 6, false, true, i);
+		}
+	    //white
+		array_p[24] = new PieceRook(); array_p[24].initial(0, 7, false, true, 24);
+		array_p[25] = new PieceKnight();array_p[25].initial(1, 7, false, true, 25);
+		array_p[26] = new PieceBishop();array_p[26].initial(2, 7, false, true, 26);
+	    array_p[27] = new PieceQueen(); array_p[27].initial(3, 7, false, true, 27);
+	    array_p[28] = new PieceKing();array_p[28].initial(4, 7, false, true, 28);
+	    array_p[29] = new PieceBishop();array_p[29].initial(5, 7, false, true, 29);
+	    array_p[30] = new PieceKnight();array_p[30].initial(6, 7, false, true, 30);
+	    array_p[31] = new PieceRook();array_p[31].initial(7, 7, false, true, 31);
+	}
+}
