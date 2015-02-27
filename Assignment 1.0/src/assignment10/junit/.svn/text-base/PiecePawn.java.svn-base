@@ -13,31 +13,29 @@ public class PiecePawn extends Piece {
 			return 0;
 		if(x == this.x && y == this.y) //not moving
 			return 0;
-		if(this.color==false)//white piece
+		if(!this.color)				  //white piece
 		{
-			if((this.y-y==1 || this.y-y==2) && x==this.x) 
-				//move front 1 or 2
+			if((this.y-y==1 || this.y-y==2) && x==this.x) //move front 1 or 2
 			{
 				return 1;
 			}
 		}
 		else
 		{
-			if((y-this.y==1 || y-this.y==2) && x==this.x) 
-				//move front 1 or 2
+			if((y-this.y==1 || y-this.y==2) && x==this.x) //move front 1 or 2
 			{
 				return 1;
 			}
 		}
 		if(Math.abs(x-this.x)==1)
 		{
-			if(this.color==false)//white piece
-			{	if(this.y-y==1)//capture diagonal
+			if(!this.color)		//white piece
+			{	if(this.y-y==1)	//capture diagonal
 					return 2;
 			}
 			else
 			{
-				if(y-this.y==1)//capture diagonal
+				if(y-this.y==1)	//capture diagonal
 					return 2;
 			}
 		}
@@ -49,10 +47,17 @@ public class PiecePawn extends Piece {
 	{
 		int p_x = p.position()[0];
 		int p_y = p.position()[1];
-		//if(p_x==this.x && p_y==this.y)//occupied
-		//return true;
-		if((x==this.x) && (this.y-y==2) && (this.y-p_y==1))
-			return true;
+		if(!this.color)	
+		{	
+			if((p_x==this.x) && (this.y-y==2) && (this.y-p_y==1))
+				return true;
+		}
+		if(this.color)	
+		{	
+			if((p_x==this.x) && (y-this.y==2) && (p_y-this.y==1))
+				return true;
+		}
+			
 		return false;
 	}
 	

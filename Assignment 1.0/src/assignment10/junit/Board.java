@@ -14,8 +14,8 @@ public class Board {
 	protected int step = 0;			//how many steps
 	protected int win = 0;			//not win yet
 	public static Piece[] array_p;	//array of 34 pieces 
-	protected boolean turn=false;	//who's turn
-	
+	protected boolean turn=false;	//who's turn  false=white
+	public int white_score, black_score=0;
     /**
      * move a piece
      * @param (x, y) destination coordinates
@@ -26,7 +26,16 @@ public class Board {
 	{
 		/*check if p can move and if there's any leap-over*/
 		if(Board_can_move(x, y, p)==false){	
-			System.out.println("Invalid move_1");
+			System.out.println("to:"+x+" "+y+"Invalid move_1");
+			return 0;
+		}
+		/*check if it's gonna capture same color piece*/
+		if(!turn && board[x][y]>=16 && board[x][y]!=33)
+		{	System.out.println("Invalid move_3");
+			return 0;
+		}
+		if(turn && board[x][y]!=0 && (board[x][y]<16 || board[x][y]==33))
+		{	System.out.println("Invalid move_3");
 			return 0;
 		}
 		/*check if a pawn can move*/
@@ -44,13 +53,13 @@ public class Board {
 				step++;
 				turn = !turn;
 				if(win())
-					return 1;
-				return 0;
+					return 2;
+				return 1;
 			}
 		}
 		/*capture another piece*/
 		if(board[x][y]!=0){
-			board[p.x][p.y] = 0; 				//pick up the piece from the board
+	    	board[p.x][p.y] = 0; 				//pick up the piece from the board
 			array_p[board[x][y]].remove(); 	//set piece status to false
 			p.move(x, y); 						//set piece to right position
 			board[x][y] = p.id(); 				//put it to destination
@@ -69,8 +78,8 @@ public class Board {
 		}
 		/*if one of the king dies*/
 		if(win())
-			return 1;
-		return 0;
+			return 2;
+		return 1;
 	}
 	
 	/**
@@ -82,12 +91,20 @@ public class Board {
 	public boolean Board_can_move(int x, int y, Piece p)
 	{
 		if(p.out_of_board(x, y, size))
+		{
+			System.out.println("out of board");
 			return false;
+		}
 		if(p.can_move(x, y, turn)==0)
+		{
+			System.out.println("cant move");
 			return false;
+		}
 		if(p.type()==3) //knight
 			return true;//no leap_over
 		for(int i=1; i<35;i++){
+			if(array_p[i].status==false)
+				continue;
 			if(p.leap_over(x, y, array_p[i])){
 				System.out.println("Over-Leap!");
 				return false;
@@ -105,11 +122,13 @@ public class Board {
 		if (array_p[13].status == false)
 		{
 			System.out.println("White Wins!");
+			win = 1;
 			return true;
 		}
 		if(array_p[29].status == false)
 		{
 			System.out.println("Black Wins!");
+			win = 2;
 			return true;
 		}
 		return false;
@@ -177,7 +196,7 @@ public class Board {
 	    array_p[30] = new PieceBishop();array_p[30].initial(5, 7, false, true, 30);
 	    array_p[31] = new PieceKnight();array_p[31].initial(6, 7, false, true, 31);
 	    array_p[32] = new PieceRook();array_p[32].initial(7, 7, false, true, 32);
-	    array_p[33] = new PieceCustom();array_p[33].initial(3, 5, false, true, 33);
-	    array_p[34] = new PieceCustom();array_p[34].initial(3, 2, true, true, 34);
+	    array_p[33] = new PieceCustom();array_p[33].initial(3, 2, true, true, 33);
+	    array_p[34] = new PieceCustom();array_p[34].initial(3, 5, false, true, 34);
 	}
 }

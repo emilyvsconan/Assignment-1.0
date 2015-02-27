@@ -1,0 +1,23 @@
+package assignment10.junit;
+
+public class GameLoop implements Runnable {
+
+	public void run() {
+		// TODO Auto-generated constructor stub
+	}
+	  public void syncFrameRate() {
+	       long nextFrameTime = prevFrameTime + nsPerFrame;
+	       long currTime = System.nanoTime();
+	       while (currTime < nextFrameTime) {
+	             Thread.yield();
+	             try {
+	               Thread.sleep(1);
+	             } catch (Exception e) {}
+	               currTime = System.nanoTime();
+	       }
+	        elapsedFrameTime = currTime - prevFrameTime;
+	        prevFrameTime = currTime;
+	}
+
+
+}

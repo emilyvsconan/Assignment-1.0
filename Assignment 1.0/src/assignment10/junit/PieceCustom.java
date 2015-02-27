@@ -5,11 +5,13 @@ public class PieceCustom extends Piece {
 	public int can_move(int x, int y, boolean turn)
 	{
 		if(turn!=this.color)
-			return 0;
+		{  System.out.print("wrong turn");
+			return 0;}
 		if(x == this.x && y == this.y) //not moving
 			return 0;
 		if(Math.abs(x - this.x) == 1 && Math.abs(y - this.y) == 1) //one square in diagonl
 			return 1;
+		//System.out.print("y"+y+"now"+this.y);
 		return 0;
 	}
 	

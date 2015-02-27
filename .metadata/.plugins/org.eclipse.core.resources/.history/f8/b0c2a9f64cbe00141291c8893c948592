@@ -1,0 +1,48 @@
+package assignment10.junit;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.Properties;
+
+public class EventGatherer implements KeyListener {
+    public void EventGatherer()
+    {
+        if (e.getCharCode == KeyEvent.VK_SPACE) {
+            spacebarEvents.add(e);
+            return;
+        } else if (...) {
+            // etc.
+        }
+    }
+    
+    public void gatherInput() {
+        if (spacebarEvents.size() > 0) {
+            processSpacebarEvents(elapsedFrameTime);
+        }
+        // etc.: process all other events here as well
+    }
+
+	
+	public void keyPressed(KeyEvent e) {
+        if (e.getCharCode == KeyEvent.VK_SPACE) {
+            //Object spacebarEvents;
+			spacebarEvents.add(e);
+            return;
+        } else if () {
+            // etc.
+        }
+    }
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}

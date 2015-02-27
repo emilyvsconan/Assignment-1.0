@@ -1,9 +1,11 @@
 package assignment10.junit;
 
+
 public class main {
 	/**
 	 * @param args
 	 */
-
-
+    	 final View app = new View();                        
+     
+	
 }

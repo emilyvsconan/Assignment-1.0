@@ -1,13 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/svn/sp15-cs242/!svn/ver/1215/ywu99/Assignment%201.0/src/assignment10/junit
+/svn/sp15-cs242/!svn/ver/2157/ywu99/Assignment%201.0/src/assignment10/junit
+END
+PieceCustom.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/sp15-cs242/!svn/ver/2157/ywu99/Assignment%201.0/src/assignment10/junit/PieceCustom.java
 END
 Piece.java
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/sp15-cs242/!svn/ver/1215/ywu99/Assignment%201.0/src/assignment10/junit/Piece.java
+/svn/sp15-cs242/!svn/ver/2143/ywu99/Assignment%201.0/src/assignment10/junit/Piece.java
 END
 PieceQueen.java
 K 25
@@ -37,7 +43,7 @@ BoardTest.java
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/sp15-cs242/!svn/ver/1216/ywu99/Assignment%201.0/src/assignment10/junit/BoardTest.java
+/svn/sp15-cs242/!svn/ver/2157/ywu99/Assignment%201.0/src/assignment10/junit/BoardTest.java
 END
 PieceRook.java
 K 25
@@ -49,13 +55,13 @@ Board.java
 K 25
 svn:wc:ra_dav:version-url
 V 86
-/svn/sp15-cs242/!svn/ver/1216/ywu99/Assignment%201.0/src/assignment10/junit/Board.java
+/svn/sp15-cs242/!svn/ver/2157/ywu99/Assignment%201.0/src/assignment10/junit/Board.java
 END
 PiecePawn.java
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/svn/sp15-cs242/!svn/ver/1215/ywu99/Assignment%201.0/src/assignment10/junit/PiecePawn.java
+/svn/sp15-cs242/!svn/ver/2157/ywu99/Assignment%201.0/src/assignment10/junit/PiecePawn.java
 END
 PieceKing.java
 K 25

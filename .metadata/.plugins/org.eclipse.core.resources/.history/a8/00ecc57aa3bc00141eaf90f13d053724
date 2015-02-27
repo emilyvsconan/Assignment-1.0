@@ -1,0 +1,12 @@
+package assignment10.junit;
+
+import assignment10.junit.View.View;
+
+public class main {
+	/**
+	 * @param args
+	 */
+    	 final View app = new View();                        
+     
+	
+}

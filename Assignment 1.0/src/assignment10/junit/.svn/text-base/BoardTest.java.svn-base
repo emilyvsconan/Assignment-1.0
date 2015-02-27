@@ -23,22 +23,22 @@ public class BoardTest {
 	@Test
 	public void testBoard_move() {
 		Board test = new Board(8);
-		test.Board_move(3, 3, test.white_pawn_1);
-		assertEquals("Invalid move_1\n", out.toString());
+		test.Board_move(3, 3, test.array_p[16]);
+		assertEquals("Invalid move_1\n", out.toString());//return value -- modify
 	}
 
 	@Test
 	public void testBoard_can_move() {
 		Board test = new Board(8);
-		boolean result = test.Board_can_move(0, 4, Board.white_pawn_1);
-		assertEquals(true, result); //white pawn can move
-		boolean result_3 = test.Board_can_move(0, 5, Board.black_pawn_1);
+		//boolean result = test.Board_can_move(0, 4, Board.array_p[16]);
+		//assertEquals(true, result); //white pawn can move
+		boolean result_3 = test.Board_can_move(0, 5, Board.array_p[0]);
 		assertEquals(false, result_3); //white should move first
-		boolean result_2 = test.Board_can_move(0, 5, Board.white_rook_1);
-		assertEquals(false, result_2); //rook cannot over leap
-		boolean result_4 = test.Board_can_move(2, 5, Board.white_knight_1);
-		assertEquals(true, result_4); //knight can over leap
-		boolean result_5 = test.Board_can_move(10, 10, Board.white_knight_1);
+		boolean result_2 = test.Board_can_move(0, 5, Board.array_p[24]);
+		assertEquals(false, result_2); //rook cannot leap over
+		boolean result_4 = test.Board_can_move(2, 5, Board.array_p[25]);
+		assertEquals(true, result_4); //knight can leap over
+		boolean result_5 = test.Board_can_move(10, 10, Board.array_p[25]);
 		assertEquals(false, result_5); //out of the board
 		
 	}
@@ -46,13 +46,15 @@ public class BoardTest {
 	@Test
 	public void testWin() {
 		Board test = new Board(8);
-		test.Board_move(0, 4, test.white_pawn_1);
-		test.Board_move(4, 3, test.black_pawn_5);
-		test.Board_move(0, 5, test.white_rook_1);
-		test.Board_move(4, 5, test.black_pawn_5);
-		test.Board_move(4, 5, test.white_rook_1);
-		test.Board_move(0, 2, test.black_pawn_1);
-		test.Board_move(4, 0, test.white_rook_1);
+		test.Board_move(0, 4, test.array_p[16]);
+		test.Board_move(4, 3, test.array_p[4]);
+		test.Board_move(0, 5, test.array_p[24]);
+		test.Board_move(4, 5, test.array_p[4]);
+		test.Board_move(3, 5, test.array_p[24]);
+		test.Board_move(4, 6, test.array_p[4]);
+		test.Board_move(4, 5, test.array_p[24]);
+		test.Board_move(0, 2, test.array_p[0]);
+		test.Board_move(4, 0, test.array_p[24]);
 		assertEquals("White Wins!\n", out.toString());
 	}
 

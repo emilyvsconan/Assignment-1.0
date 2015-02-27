@@ -1,0 +1,35 @@
+package assignment10.junit;
+
+/*The Custom can move one square in diagonal.*/
+public class PieceCustom extends Piece {
+	public int can_move(int x, int y, boolean turn)
+	{
+		if(turn!=this.color)
+		{  System.out.print("wrong turn");
+			return 0;}
+		if(x == this.x && y == this.y) //not moving
+			return 0;
+		if(Math.abs(x - this.x) == 1 && Math.abs(y - this.y) == 1) //one square in diagonl
+			return 1;
+		System.out.print("x"+x+"now"+this.x);
+		return 1;
+	}
+	
+	public boolean leap_over(int x, int y, Piece p)//x,y-destination
+	//return true if there's leap_over
+	{
+		return false;
+	}
+	
+	public int type()
+	{
+		return 7;
+	}
+
+	public void print()
+	{
+		System.out.println("I am "+this.color+" Custom "+this.position());	
+	}
+}
+
+
